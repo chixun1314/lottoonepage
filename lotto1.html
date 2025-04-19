@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로또번호 자동 생성기</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    .header {
+      background: url('https://github.com/chixun1314/image-center/blob/main/Money%20tree.png?raw=true') no-repeat center center;
+      background-size: cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      position: relative;
+    }
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    .header span {
+      position: relative;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+    .lotto-section {
+      background-color: #6fb344;
+      padding: 40px 20px;
+      color: white;
+      font-size: 22px;
+    }
+    .lotto-button {
+      background-color: #ffffff;
+      color: #6fb344;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .lotto-numbers {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .ball {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      color: #5a9bd5;
+      border: 2px solid #5a9bd5;
+      border-radius: 12px;
+      width: 50px;
+      height: 50px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .adsense {
+      background-color: #ed7d31;
+      color: white;
+      padding: 50px 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .donate {
+      background-color: #f7bc00;
+      color: white;
+      font-size: 22px;
+      padding: 40px 20px;
+      font-weight: bold;
+    }
+    .donate-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: white;
+      color: #f7bc00;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .donate-button:hover {
+      background-color: #fff2c0;
+      color: #d19d00;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span>LOTTO</span>
+  </div>
+  <div class="lotto-section">
+    로또번호 자동 생성기 <br /><br />
+    <button class="lotto-button" onclick="generateLotto()">번호 생성</button>
+    <div class="lotto-numbers" id="lottoNumbers">
+      <div class="ball">&nbsp;</div>
+      <div class="ball">&nbsp;</div>
+      <div class="ball">&nbsp;</div>
+      <div class="ball">&nbsp;</div>
+      <div class="ball">&nbsp;</div>
+      <div class="ball">&nbsp;</div>
+    </div>
+  </div>
+  <div class="adsense">
+    <div><center>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2622865653116392" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2622865653116392"
+           data-ad-slot="9056893401"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </center></div>
+  </div>
+  <div class="donate">
+    당첨 되신분은 약간의 기부를 해주시면 더 잘 되실 거에요. <br /><br />
+    <a href="https://qr.kakaopay.com/FSLlSTouo" target="_blank" class="donate-button">
+      💛 BUY ME A COFFEE
+    </a>
+  </div>
+  <script>
+    function generateLotto() {
+      const numbers = new Set();
+      while (numbers.size < 6) {
+        numbers.add(Math.floor(Math.random() * 45) + 1);
+      }
+      const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+      const lottoContainer = document.getElementById("lottoNumbers");
+      const balls = lottoContainer.querySelectorAll(".ball");
+      balls.forEach((ball, index) => {
+        ball.textContent = sortedNumbers[index] ?? "";
+      });
+    }
+  </script>
+</body>
+</html>
